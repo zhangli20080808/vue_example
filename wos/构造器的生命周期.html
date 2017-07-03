@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>生命周期</title>
+    <script src="../../assets/js/vue.js"></script>
+    <link rel="stylesheet" href="../../assets/css/index.css">
+    <script src="https://cdn.bootcss.com/vue-router/2.4.0/vue-router.js"></script>
+</head>
+<body>
+<div id="app">
+    <p>{{msg}}</p>
+    <p>
+        <button @click="jia">+</button>
+    </p>
+</div>
+<button onclick="vm.$destroy();">destory</button>
+
+
+<script>
+    const home = {template: '<div>this is home</div>'}
+    const first = {template: '<div>this is first</div>'}
+    const second = {template: '<div>this is second</div>'}
+
+    const router = new VueRouter({
+        mode: 'history',
+        routes: [
+            {path: '/', component: home},
+            {path: '/first', component: first},
+            {path: '/second', component: second}
+        ]
+    })
+
+    //我们经常用到的也就是4  6   9
+   new Vue({
+        el: "#app",
+        router,
+       data(){
+            return{
+                msg:'1'
+            }
+       },
+        template: `
+        <div>
+       <ul>
+           <li><router-link to="/">/</router-link></li>
+           <li><router-link to="/first">first</router-link></li>
+           <li><router-link to="/second">second</router-link></li>
+       </ul>
+       <router-view></router-view>
+   </div>`,
+
+        methods: {
+            jia: function () {
+                this.message++
+            }
+        },
+        beforeCreate: function () {
+            //初始化之后,为整个vue组件部署数据
+            console.log('1-beforeCreate之后')
+        },
+        created: function () {
+            console.log('2-created创建完成')
+        },
+        beforeMount: function () {
+            //虚拟dom 和那个#app没什么关系 我可以做一些样式  css的渲染啊 计算啊什么的 请求啊什么得 还没有渲染出来
+            console.log('3-beforeMount挂载之前')
+        },
+        mounted: function () {
+            //一般我们用的最多的就是这个  jquery都可以写在这里  只有在这里我们才能进行dom操作 上面都不行
+            console.log('4-mounted 被创建')
+        },
+        beforeUpdate: function () {
+            //点击按钮   开始执行 我们可以做一些相应的记录
+            console.log('5-beforeUpdate 数据更新之前')
+        },
+        update: function () {
+            console.log('6-update 被更新后')
+        },
+        // keep-alive  7 8 再keep-alive中才会存在，7.8 被激活  这个标签只会留在内存里面而不会被销毁
+        activated: function () {
+            console.log('7-activated')
+        },
+        deactivated: function () {
+            console.log('8-activated')
+        },
+        beforeDestroy: function () {
+            //开始卸载了
+            console.log('9 -beforeDestory')
+        },
+        destroyed: function () {
+            //卸载完成   做个返回值
+            console.log('10-destroyed')
+        }
+    })
+</script>
+</body>
+</html>
+<!--
+在生命周期里,我们能做什么呢,就是部署我们的数据,怎么去部署呢
+1.小宝宝刚生出来的时候,我们需要通过ajax从服务器把数据拿过来放到我们的data里面
+2.在用户关掉这个组件的时候或页面  我们是否也能控制他呢?
+-->

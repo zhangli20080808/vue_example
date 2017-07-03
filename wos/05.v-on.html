@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>helloWorld</title>
+    <script src="../assets/js/vue.js"></script>
+    <link rel="stylesheet" href="../assets/css/index.css">
+</head>
+<body>
+<div id="app">
+    <p>{{a}}</p>
+    <button v-on:click="jia">+1</button>
+    <button @click="jian">-1</button>
+    <input type="text" @keyup.enter="onEnter" v-model="b">
+</div>
+<script>
+    var vm = new Vue({
+        el:"#app",
+        data:{
+            a:10,
+            b:1
+        },
+        methods:{
+           jia:function () {
+               this.a++
+           },
+           jian:function () {
+               this.a--
+           },
+           onEnter:function () {
+               this.a = this.a+parseInt(this.b)
+           }
+
+        }
+    })
+</script>
+</body>
+</html>
+<!--
+vuex库操作   路由   --两者构成了一个vue的生态系统
+-->

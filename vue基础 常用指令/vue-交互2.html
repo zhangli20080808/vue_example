@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>智能社——http://www.zhinengshe.com</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <style>
+
+    </style>
+    <script src="https://cdn.bootcss.com/vue/2.2.6/vue.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script>
+            new Vue({
+                data: {},
+                methods: {
+                    get(){
+                        axios.get('article.json')
+                            .then(function (response) {
+                                console.log(response);
+                            })
+                            .catch(function (error) {
+                                console.log(error);
+                            });
+                    }
+
+//                    get:function(){
+//                        this.$http.get('article.json').then(function(res){
+//                            console.log(res);
+//                        },function(res){
+//                            alert(res.status);
+//                        });
+//                    }
+                }
+                }).$amount('#app')
+    </script>
+</head>
+<body>
+<div id="app">
+    <input type="button" value="按钮" @click="get()">
+
+</div>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

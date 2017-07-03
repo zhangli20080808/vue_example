@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>helloWorld</title>
+    <script src="../assets/js/vue.js"></script>
+    <link rel="stylesheet" href="../assets/css/index.css">
+</head>
+<body>
+    <div id="app">
+        {{a}}
+        <p><button @click="jia">+</button></p>
+        <p><button onclick="jian()">-</button></p>
+        <p><button onclick="off()">del</button></p>
+    </div>
+<script>
+    var vm = new Vue({
+        el: "#app",
+        data: {
+            a: 1
+        },
+        methods:{
+            jia:function () {
+                this.a ++
+            }
+        }
+    });
+    vm.$on('jian',function (num) {
+        console.log('执行了jian');
+        this.a -= num;
+    });
+    //只要是构造器里面的方法,我们都可以用$emit来触发  如果我们想要让这个减法只执行一次 那么我们使用$once
+    //有的事件执行一次久ok    如果某天我想让这个减删除掉  我们用
+    function jian() {
+       vm.$emit('jian','2')
+    }
+    function off() {
+        //使用这个方法之后,jian就没有作用了  可以把我们添加的事件 内部的事件关闭
+        vm.$off('jian')
+    }
+</script>
+</body>
+</html>
+<!--
+vuex库操作   路由   --两者构成了一个vue的生态系统
+-->

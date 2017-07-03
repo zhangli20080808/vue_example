@@ -1,0 +1,122 @@
+
+------------------------------------------------
+
+vue-cli  ->  vue-loader
+
+bootstrap:
+	官网
+--------------------------------
+bower install 安装特定版本	   jquery#1.11.1
+npm	install	  jquery@1.11.1
+--------------------------------
+
+    饿了吗 基于vue的一个组件库
+	elementUI	PC
+	MintUI		移动端
+
+--------------------------------
+elementUI:
+	���ʹ��
+
+	����:http://element.eleme.io/
+ʹ��:
+1. ��װ element-ui
+	npm i element-ui -D
+
+	npm install element-ui --save-dev
+
+	//   i	->    install
+	//   D     ->    --save-dev
+	//   S	->    --save
+2. ����   main.js	����ļ�
+	import ElementUI from 'element-ui'
+	import 'element-ui/lib/theme-default/index.css'
+
+	ȫ������
+3. ʹ�����
+	Vue.use(ElementUI)
+
+	css-loader  	����css
+	����ͼ��	file-loader
+
+
+	less:
+		less
+		less-loader
+-------------------------------------------------
+���������Ӧ���:	��
+	����Ҫ ��ť
+1. babel-plugin-component
+	cnpm install babel-plugin-component -D
+2. .babelrc�ļ���������һ������
+	  "plugins": [["component", [
+	    {
+	      "libraryName": "element-ui",
+	      "styleLibraryName": "theme-default"
+	    }
+	  ]]]
+3. �����ĸ���������ĸ�
+	����:
+		import {Button,Radio} from 'element-ui'
+	ʹ��:
+		a). Vue.component(Button.name, Button);  ���˲�̫ϲ��
+		b). Vue.use(Button);   ��
+---------------------------------------------------
+��������:
+	vue-resourse		����
+
+	axios
+---------------------------------------------------
+element-ui    ->  pc
+
+mint-ui
+	�ƶ��� ui��
+
+	http://mint-ui.github.io/
+
+1. ����
+	npm install mint-ui -S
+
+	-S
+	--save
+2. ����
+	import Vue from 'vue';
+	import Mint from 'mint-ui';
+	import 'mint-ui/lib/style.css'
+	Vue.use(Mint);
+
+	��������:
+	import { Cell, Checklist } from 'minu-ui';
+	Vue.component(Cell.name, Cell);
+	Vue.component(Checklist.name, Checklist);
+
+http://mint-ui.github.io/docs/#!/zh-cn2
+
+��̳:
+	
+-------------------------------------------------------
+
+Mint-ui-demo:  �����ֲ�����һ��
+
+https://github.com/itstrive/striveCode/tree/js/vue2.0-Mint-ui-demo
+
+
+
+	
+	
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

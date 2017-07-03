@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>helloWorld</title>
+    <script src="../../assets/js/vue.js"></script>
+    <link rel="stylesheet" href="../../assets/css/index.css">
+    <style>
+    </style>
+</head>
+<body>
+<h1>component</h1>
+<div id="app">
+    <worldWorld></worldWorld>
+</div>
+
+<script>
+    //我们做city这样的一个组件  我们子啊下面的那个组件中饮用city
+    city = {
+      template:'<div>this is city</div>'
+    };
+    worldworld = {
+        template:`<div>
+            <p>局部注册的组件 -&gt;&lt;hello&gt;</p>
+            <city></city>
+            </div>`,
+        components:{
+            "city":city
+        }
+    };
+    var vm = new Vue({
+        el:"#app",
+        data:{
+            message:"hello Vue"
+        },
+        components:{
+            "world－world":worldworld
+        }
+    })
+</script>
+</body>
+</html>
+<!--
+元素   标签  我们把一个元素打包成标签的样子--组件  我们的标签可以传属性 和 值吧 属性和值加载一起的时候是不是就是一个组件了
+必须放在作用域里面吧 外面是无效的
+
+注意我们局部注册的组件里面的写法   而且是要加s的components
+当然,我们这个地方书写的局部组件也有他的好处猫们可以单独的写一个js存放起来,使用时,直接引入就ok了   注册就好了
+全局就不一样了  都用的到的     我们小的可能是按钮皮肤啊 什么的
+
+我们组件的传值都是从父组件向子组件进行, 反正不行    单项数据流的方式 如果我们想双向传递数据  vuex
+
+-->

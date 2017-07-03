@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>helloWorld</title>
+    <script src="../assets/js/vue.js"></script>
+    <link rel="stylesheet" href="../assets/css/index.css">
+</head>
+<body>
+<h1>v-if 判断是否加载</h1>
+<p>v-show:调整css display hidden  </p>
+<div id="app">
+    <div v-if="ok">你看我能显示不</div>
+    <div v-else>原来是假的</div>
+
+    <div v-if="ok2">我显示不了</div>
+
+    <div v-show="ok">我爱你</div>
+    <!--
+    两者有什么区别呢  v-if可以减轻一些对浏览器的负担  后者只是表示显示隐藏而已
+    -->
+</div>
+<script>
+    var vm = new Vue({
+        el:"#app",
+        data:{
+            ok:true,
+            ok2:false
+        }
+    })
+</script>
+</body>
+</html>
+<!--
+vuex库操作   路由   --两者构成了一个vue的生态系统
+-->

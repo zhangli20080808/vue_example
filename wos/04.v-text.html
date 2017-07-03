@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>helloWorld</title>
+    <script src="../assets/js/vue.js"></script>
+    <link rel="stylesheet" href="../assets/css/index.css">
+</head>
+<body>
+    <div id="app">
+        <span v-text="msg"></span>
+        <!--和下面的一样-->
+        <span v-html="message"></span>
+
+    </div>
+<script>
+    var vm = new Vue({
+        el:"#app",
+        data:{
+            msg:"hello Vue",
+            message:"<h1>我真屌你离我不远</h1>"
+        }
+    })
+</script>
+</body>
+</html>
+<!--
+vuex库操作   路由   --两者构成了一个vue的生态系统
+-->

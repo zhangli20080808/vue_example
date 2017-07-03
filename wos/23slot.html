@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>helloWorld</title>
+    <script src="../../assets/js/vue.js"></script>
+    <link rel="stylesheet" href="../../assets/css/index.css">
+</head>
+<body>
+    <div id="app">
+        <goods v-for="aaa in goods">
+            <span slot="name">{{aaa.name}}</span>
+            <span slot="num">{{aaa.num}}</span>
+        </goods>
+        <!--我们还得用slot去传值-->
+    </div>
+    <template id="demo">
+        <p>
+            名称:<slot name="name"></slot>
+            数量:<slot name="num"></slot>
+        </p>
+    </template>
+<script>
+    goods = {
+        template:"#demo"
+    }
+    var vm = new Vue({
+        el: "#app",
+        data: {
+            message: 'hello vue',
+            goods:[
+                {name:"pen",num:"20"},
+                {name:"car",num:"30"}
+            ]
+        },
+        components:{
+            "goods":goods
+        }
+
+    })
+</script>
+</body>
+</html>
+<!--
+   帮我们把组件的内容传播出去  我们的组件只允许标签的属性传值  有时候我们需要从标签里传递内容到模版
+   根据内容去更改内容
+
+   标签得内容拓展 ---slot 这是最佳得方式从标签除啊你内容到模版  不是位的方式
+-->

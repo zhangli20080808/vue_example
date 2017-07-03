@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>$实例</title>
+    <script src="../../assets/js/vue.js"></script>
+    <link rel="stylesheet" href="../../assets/css/index.css">
+    <script src="../../assets/js/jquery.js"></script>
+</head>
+<body>
+<!--
+1.我从构造器外部去操作vue构造器内部的东西,包括组件 子组件&#45;&#45;&#45;&#45;实例
+2.你要是想把jquery写进构造器里 我们可以写几个地方 methods 都放到声名周期里 只有第四第六被操作的时候
+    才能去操作dom
+3.也可以理解成给了我们原生js jquery 一个操作vue的接口  那就是vue对外呢的数据接口,我们称之为实例
+4.我们看看有什么实例  所有的实例都要写上一个$
+
+
+-->
+<div id="app">
+    {{message}}
+</div>
+<script>
+    var vm = new Vue({
+        el: "#app",
+        data: {
+            message:'hello vue'
+        },
+        //我们在这个地方写一个函数,他可以暴露给外面,成为一个实例的方法
+        methods:{
+            jia:function () {
+                this.message = "bye"
+            }
+        }
+//        mounted:function () {
+//            //一般我们用的最多的就是这个  jquery都可以写在这里  只有在这里我们才能进行dom操作 上面都不行
+//            console.log('4-mounted 被创建')
+//            $("#app").html('jquery is here')
+//        }
+    });
+    //为什么是虚拟节点呢,是因为我们操作这些节点的时候,是vue内部的操作,而不是外部的操作 注意 内部的操作是生命周期给
+    //客户之前我们操作都是内部的操作  出来了已经给用户了,我们就可以去改变了
+//    console.log(vm.$el);
+      console.log(vm)
+      console.log(vm.jia())//执行了我们这个jia的方法
+
+</script>
+</body>
+</html>
+<!--
+vuex库操作   路由   --两者构成了一个vue的生态系统
+-->

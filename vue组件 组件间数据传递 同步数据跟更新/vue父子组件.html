@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="bower_components/vue/dist/vue.js"></script>
+	<style>
+	</style>
+</head>
+<body>
+<!--
+	默认情况下，vue父子组件之间的数据事不能共享的
+
+	怎么传递呢？
+
+	1.子组件获取父组件信息   props   属性绑定
+	在调用子组件
+		<bbb :m="数据" :my-msg></bbb>
+
+	子组件之内
+		prop:['m','myMsg']
+
+	2.父级获取子级数据？
+
+
+-->
+	<div id="box">
+		<aaa>
+		</aaa>
+	</div>
+
+	<script>
+		var vm=new Vue({
+			el:'#box',
+			data:{
+				a:'aaa'
+			},
+			components:{
+				'aaa':{
+					template:'<h2>我是aaa组件</h2><bbb></bbb>',
+					components:{
+						'bbb':{
+							template:'<h3>我是bbb组件</h3>'
+						}
+					}
+				}
+			}
+		});
+
+	</script>
+</body>
+</html>

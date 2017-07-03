@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>helloWorld</title>
+    <script src="../assets/js/vue.js"></script>
+    <link rel="stylesheet" href="../assets/css/index.css">
+</head>
+<body>
+    <h1>vue-extend</h1>
+    <div id="header"></div>
+    <div id="footer"></div>
+<script>
+    var header_aaa = Vue.extend({
+        template:'<p>{{message}}</p>',
+        data:function () {
+            return {
+                message:'i am header'
+            }
+        }
+    });
+//    var footer_aaa = Vue.extend({
+//        template:'<p>{{message}}</p>',
+//        data:function () {
+//            return {
+//                message:'i am footer'
+//            }
+//        }
+//    });
+    //我们弄完这个是没有作用的,我们需要把他挂在到div上面去 new 其实就复制
+    new header_aaa().$mount('#header')
+</script>
+</body>
+</html>
+<!--
+就比如说我们页面的头部,很多都是一样的   我们现在用vue去做  可以把页面的头部文件单独的做一个js文件,然后引入他就行了
+后面我们在探讨  组件和挂载的区别  我们挂载只能挂载到一个指定的div上  也就是说我们一般指挂载无属性的标签实体
+-->

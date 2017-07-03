@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>helloWorld</title>
+    <script src="../assets/js/vue.js"></script>
+    <link rel="stylesheet" href="../assets/css/index.css">
+    <style>
+        .classA{
+            color: red;
+        }
+        .classB{
+            font-size: 200%;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <h3>v-bind</h3>
+        <img v-bind:src="imgSrc" :width="width" alt=""/>
+        <!-- 一般我们采用简写的方式 @绑定事件 :绑定属性-->
+        <div :class="className">1.绑定class</div>
+        <div :class="{classA:colorOr}">2.绑定class的判断</div>
+        <!-- 这个地方需要注意的是这个地方的classA是style里面的,我们要对他进行判断-->
+        <div :class="[classA,classB]">3.绑定class中使用数组</div>
+        <div :class="[colorOr?classA:classB]">4.绑定class中使用三元表达式</div>
+        <!--在数组中使用三元表达式-->
+        <div :class="[{classA:colorOr},classB]">5.绑定class中使用判断组合</div>
+        <!--注意啊,在vue中样式我们不支持横杠,所以-->
+        <div :style="{color:red,fontSize:font}">6.style绑定</div>
+        <div :style="fontArray">7.style绑定json语句</div>
+    </div>
+<script>
+    var vm = new Vue({
+        el:"#app",
+        data:{
+            imgSrc:"http://cn.vuejs.org/images/logo.png",
+            width:'50',
+            className:'classA',
+            colorOr:false,
+            classA:'classA',
+            classB:'classB',
+            red:'red',
+            font:'30px',
+            fontArray:{
+                color:'green',
+                fontSize:'40px'
+            }
+        }
+    })
+</script>
+</body>
+</html>
+<!--
+vuex库操作   路由   --两者构成了一个vue的生态系统
+-->

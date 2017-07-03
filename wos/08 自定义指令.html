@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>helloWorld</title>
+    <script src="../assets/js/vue.js"></script>
+    <link rel="stylesheet" href="../assets/css/index.css">
+</head>
+<body>
+<div id="app">
+    <div v-wos="color" id="aaa">
+        {{num}}
+    </div>
+    <p>
+        <button @click="jia">+</button>
+    </p>
+</div>
+<!--我们在app碗面些一个原生的js  解绑-->
+<button onclick="xiezai()">解绑</button>
+<!--此时点击,我们整个组件的生命周期就到了尽头 5  但是我们要明白 解绑和删除是两个事情-->
+<script>
+    function xiezai() {
+        vm.$destroy()
+    }
+    //当我们刷新页面是不是完成了1 2  点击增加是不是3 4完成了 我们指令里面的组件
+    Vue.directive('wos',{
+        bind:function () {//被绑定
+            console.log('1-bind')
+        },
+        inserted:function () {//绑定到节点,完成了
+            console.log('2-inserted')
+        },
+        update:function () {//组建更新
+            console.log('3-update')
+        },
+        componentUpdated:function () {//组件更新玩完成
+            console.log('4-componentUpdated')
+        },
+        unbind:function () {//卸载 解绑
+            console.log('5-unbind')
+        }
+    });
+    var vm = new Vue({
+        el:"#app",
+        data:{
+            num:10,
+            color:'red'
+        },
+        methods:{
+            jia:function () {
+                this.num++
+            }
+        }
+    })
+</script>
+</body>
+</html>
+<!--
+vuex库操作   路由   --两者构成了一个vue的生态系统
+-->

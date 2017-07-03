@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>helloWorld</title>
+    <script src="../../assets/js/vue.js"></script>
+    <link rel="stylesheet" href="../../assets/css/index.css">
+</head>
+<body>
+    <div id="app">
+        <p>原价:{{yuanjia}}</p>
+        <p>折扣:{{zhekou}}</p>
+        <p>现价:{{xianjia}}</p>
+        <button @click="add">+</button>
+    </div>
+<script>
+    var vm = new Vue({
+        el:"#app",
+        data:{
+            message:"hello Vue",
+            yuanjia:10,
+            zhekou:0.5
+        },
+        //我们的计算呢,就是以数据为基础的情况下,在我们抛到客户端之前,格式化成我们想要的
+        //计算属性的使用
+        computed:{
+            xianjia:function () {
+                return '$'+ this.yuanjia*this.zhekou
+            }
+        },
+        methods:{
+            add:function () {
+                this.yuanjia ++
+            }
+        }
+    })
+</script>
+</body>
+</html>
+<!--
+vuex库操作   路由   --两者构成了一个vue的生态系统
+-->

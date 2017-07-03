@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>实例  方法</title>
+    <script src="../assets/js/vue.js"></script>
+    <link rel="stylesheet" href="../assets/css/index.css">
+</head>
+<body>
+    <p><button onclick="xiezai()">卸载</button></p>
+    <p><button onclick="shuaxin()">刷新</button></p>
+    <div id="app">
+
+    </div>
+<script>
+    var header_aaa = Vue.extend({
+        template:'<p>{{message}}</p>',
+        data:function () {
+            return {
+                message:'i am header'
+            }
+        },
+        destroyed:function () {
+            //卸载完成   做个返回值
+            console.log('10-destroyed')
+        },
+        mounted:function () {
+            //一般我们用的最多的就是这个  jquery都可以写在这里  只有在这里我们才能进行dom操作 上面都不行
+            console.log('4-mounted 被创建')
+        },
+        updated:function () {
+            console.log('6-update 被更新后')
+        }
+
+    });
+    //第一个实例方法   挂载
+    var vm = new header_aaa().$mount('#app');
+    //第二个方法   卸载   一定要有括号哦  我们这个卸载不是从眼前消失,而是从控制器分离了
+    function xiezai() {
+        vm.$destroy();
+    }
+    //我们的刷新一般是用在5 6之后
+    function shuaxin() {
+        vm.$forceUpdate()
+    }
+</script>
+</body>
+</html>
+<!--
+vuex库操作   路由   --两者构成了一个vue的生态系统
+-->

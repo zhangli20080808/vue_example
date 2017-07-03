@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>helloWorld</title>
+    <script src="../assets/js/vue.js"></script>
+    <link rel="stylesheet" href="../assets/css/index.css">
+</head>
+<body>
+<div id="app">
+    <ul>
+        <li v-for="item in devstudent">
+            {{item}}
+        </li>
+    </ul>
+
+
+    <hr>
+
+
+
+    <ul>
+        <li v-for="(item,index) in devst">
+           {{index}} {{item.name}}-{{item.age}}
+        </li>
+    </ul>
+</div>
+<script>
+    var vm = new Vue({
+        el:"#app",
+        data:{
+            student:[55,65,443,32,23,11],
+            st:[
+                {"name":"ly","age":222},
+                {"name":"zh","age":22},
+                {"name":"zl","age":90},
+                {"name":"jgdkgj","age":33},
+                {"name":"dggd","age":45}
+            ]
+        },
+        //computed发生在什么时候呢?  在呈现给客户之前,我们要进行一个computed的运算  所以我们新的数据会覆盖原始的数据
+        computed:{
+            devstudent:function () {
+                //return [1,2,3,4,5,6,7,8] 我们这个构造器里面的this都是指vm 我们不用加this.data.students
+                //他所有的数据都是暴露子啊外面的
+                //我们这个地方return的时候要去修改原始的数据 为了避免原始数据不被污染
+                //如果你是编程的而不是赋值的,我们直接去把名称改了,bao
+
+                //Error when rendering root instance  --你污染了原始数据,记住这个错误
+                return this.student.sort(sortNumber).reverse()
+//                return this.student.reverse()
+            },
+            devst:function () {
+                return sortByKey(this.st,'age').reverse()
+            }
+        }
+    });
+    function sortNumber(a,b) {
+        return a-b;
+    }
+    
+    //排序函数  json根据什么排序
+     function sortByKey(array,key) {
+         return array.sort(function (a,b) {
+             var x = a[key]; var y = b[key];
+             return ((x<y)?-1:((x>y)?1:0))
+         })
+     }
+</script>
+</body>
+<!--
+我们的v-for语句在2.0上运行起来可能是会又问题的 也就是2.0到1.0上是可以运行到 反过来就有问题
+
+我们的排序  放入了computed中
+-->

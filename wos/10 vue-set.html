@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>helloWorld</title>
+    <script src="../../assets/js/vue.js"></script>
+    <link rel="stylesheet" href="../../assets/css/index.css">
+</head>
+<body>
+    <div id="app">
+        <ul>
+            <li v-for="a in goods">
+                {{ a.name }} - {{ a.num }}
+            </li>
+        </ul>
+        <p>总计{{count}}件产品</p>
+        <p><button @click="qingkong">清空</button></p>
+    </div>
+    <button onclick="add()">添加</button>
+<script>
+
+    function add() {
+        //Vue.set(asdf,'count','4')
+        asdf.goods.push({name:"house",num:'1'})
+        vm.count ++;
+    }
+    var asdf = {
+        count:3,
+        goods:[
+            {name:"car",num:'1'},
+            {name:"pen",num:'2'}
+        ]
+    };
+
+    var vm = new Vue({
+        el:"#app",
+        data:asdf,
+        methods:{
+            qingkong:function () {
+                //this.count = null;//直接从内从删除  添加就无效了
+                this.count = 0;
+                this.goods = [];//这样就可以添加了
+            }
+        }
+    })
+</script>
+</body>
+</html>
+<!--
+    通过外部的一个命令更改构造里的数据  其实就是改变asdf  但要关联到里面去
+-->
