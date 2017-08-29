@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="./vue.js"></script>
+
+</head>
+<!-- 
+1.渐进式框架vue
+2.vue中两个核心点
+3.虚拟dom
+4.mvvm模式   m v vm视图模型
+5.Vue实例
+6.声名式渲染
+7.指令
+8.模版
+
+
+声名式  只需要声名在哪里做什么 无需关心怎么实现
+命令式  相反  一步一步
+声名式渲染   初始化根实例，vue自动将数据绑定在dom模版上
+ -->
+<body>
+    <!--模板-->
+    <div id="demo" >
+        {{ message }}
+    </div>
+    <script>
+        //数据
+        let data = {
+            message:"hello,Vue!"
+        }
+
+        //Vm实例
+        var vm = new Vue({
+            el:"#demo",  //挂载元素
+            data:data
+        });
+
+        console.dir(document);
+
+    </script>
+</body>
+
+
+</html>
