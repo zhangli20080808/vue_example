@@ -5,6 +5,7 @@ import store from './store/index'
 //全局引入css
 
 require('./assets/css/main.css');
+
 require('./assets/css/animate.css');
 
 import Index from './page/Index.vue'

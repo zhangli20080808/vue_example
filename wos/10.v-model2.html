@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>helloWorld</title>
+    <script src="../assets/js/vue.js"></script>
+    <link rel="stylesheet" href="../assets/css/index.css">
+</head>
+<!-- 
+在给 <input /> 元素添加 v-model 属性时，默认会把 value 作为元素的属性，然后把 'input' 事件作为实时传递 value 的触发事件
+
+
+ -->
+<body>
+<div id="demo">
+ <currency-input v-model="price"></currentcy-input>
+ <span>{{price}}</span>
+</div>
+<script src="https://cdn.bootcss.com/vue/2.3.0/vue.js"></script>
+<script>
+Vue.component('currency-input', {
+ template: `
+  <span>
+   <input
+    ref="input"
+    :value="value"
+    <!--为什么这里把 'input' 作为触发事件的事件名？`input` 在哪定义的？-->
+    @input="$emit('input', $event.target.value)"
+   >
+  </span>
+ `,
+ props: ['value'],// 为什么这里要用 value 属性，value在哪里定义的？貌似没找到啊？
+})
+
+var demo = new Vue({
+ el: '#demo',
+ data: {
+  price: 100,
+ }
+})
+</script>
+</body>
+</html>
+<!--
+vuex库操作   路由   --两者构成了一个vue的生态系统
+
+
+<currency-input v-model="price"></currentcy-input>
+<!--上行代码是下行的语法糖
+ <currency-input :value="price" @input="price = arguments[0]"></currency-input>
+-->
+
+{{!-- 
+现在你知道 value 和 input 从哪来的了吧。与上面总结的类似：
+给组件添加 v-model 属性时，默认会把 value 作为组件的属性，然后把 'input' 值作为给组件绑定事件时的事件名 --!}}
+
+
+{{!-- 
+子－>父
+子组件中需要以某种方式例如点击事件的方法来触发一个自定义事件
+将需要传的值作为$emit的第二个参数，该值将作为实参传给响应自定义事件的方法
+在父组件中注册子组件并在子组件标签上绑定对自定义事件的监听
+
+
+父－>子
+子组件在props中创建一个属性，用以接收父组件传过来的值
+父组件中注册子组件
+在子组件标签中添加子组件props中创建的属性
+把需要传给子组件的值赋给该属性
+ --!}}
+
+
+
+-->

@@ -34,7 +34,7 @@ axios.interceptors.request.use(function (config){
   return Promise.reject(error);
 });
 
-// 响应拦截
+// 响应拦截 
 axios.interceptors.response.use(function (response){
   // 处理响应数据
   store.dispatch('HideLoading');

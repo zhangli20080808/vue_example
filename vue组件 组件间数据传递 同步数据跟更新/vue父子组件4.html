@@ -11,6 +11,10 @@
 	<div id="box">
 		<aaa>
 		</aaa>
+		<ul>
+			<li v-for="item in b"></li>
+		</ul>
+		{{a}}
 	</div>
 
 	<template id="aaa">
@@ -21,8 +25,10 @@
 		var vm=new Vue({
 			el:'#box',
 			data:{
-				a:'aaa'
+				a:'aaa',
+				b:[1,2,3]
 			},
+
 			components:{
 				'aaa':{
 					data(){
